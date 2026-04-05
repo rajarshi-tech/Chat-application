@@ -1,0 +1,17 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: antiquewhite;
+  height: 50px;
+}
+.right {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}

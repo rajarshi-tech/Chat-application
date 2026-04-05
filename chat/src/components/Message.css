@@ -1,0 +1,28 @@
+.sender {
+  font-weight: bold;
+}
+.current-user {
+  color: rgb(104, 73, 30);
+}
+.gap {
+  height: 7px;
+}
+.message {
+  display: flex;
+  justify-content: flex-end;
+}
+.current-user-message {
+  justify-content: flex-start;
+}
+.message-box {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #dcd1d1;
+  margin-bottom: 20px;
+}
+.text {
+  line-clamp: 2;
+}
