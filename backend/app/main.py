@@ -21,7 +21,7 @@ app.add_middleware(
 def default():
     return { "message" : "backend running" }
 
-@app.post("/signup")
+@app.post("/signup", response_model=schemas.UserResponse)
 def signup(user: schemas.UserCreate, db: Session = Depends(get_db)):
     existing = crud.get_user_by_username(db, user.username)
     if existing:
@@ -30,7 +30,7 @@ def signup(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return crud.create_user(db, user.username, user.password)
 
 
-@app.post("/login")
+@app.post("/login", response_model=schemas.Token)
 def login(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_username(db, user.username)
 
