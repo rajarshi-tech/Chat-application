@@ -1,6 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from "react";
-import axios from "axios";
 import { useLocation } from "react-router";
+import API from "../api";
 // eslint-disable-next-line react-refresh/only-export-components
 export const MessagesContext = createContext({
   messages: [],
@@ -14,7 +14,7 @@ export function MessagesProvider({ children }) {
   const location = useLocation();
 
   const loadMessages = useCallback(async () => {
-    const storedMessages = await axios.get("/api/messages");
+    const storedMessages = await API.get("/messages");
     setMessages(storedMessages.data);
     // console.log("Messages loaded:", storedMessages.data);
   }, []);
@@ -38,12 +38,12 @@ export function MessagesProvider({ children }) {
 
 
   const updateMessages = async (newMessage) => {
-    await axios.post("/api/messages", newMessage);
+    await API.post("/messages", newMessage);
     await loadMessages();
   };
 
   const deleteMessages = async () => {
-    await axios.delete("/api/messages");
+    await API.delete("/messages");
     await loadMessages();
   }
 

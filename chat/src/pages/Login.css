@@ -1,19 +1,75 @@
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top, rgba(95, 165, 255, 0.18), transparent 35%),
+    linear-gradient(160deg, #f7f9fc 0%, #edf3ff 100%);
+}
+
 .login {
+  width: min(100%, 420px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  gap: 14px;
+  padding: 32px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 60px rgba(39, 76, 119, 0.16);
 }
+
+.login-copy h1 {
+  margin: 0 0 6px;
+  font-size: 2rem;
+}
+
+.login-copy p {
+  margin: 0;
+  color: #54606f;
+}
+
 .login-input {
-  margin-bottom: 5px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d4dcec;
+  border-radius: 12px;
+  font: inherit;
+  background: #fff;
 }
+
+.login-input:focus {
+  outline: 2px solid rgba(69, 123, 157, 0.3);
+  border-color: #457b9d;
+}
+
+.login-error {
+  margin: 0;
+  color: #b42318;
+}
+
 .buttons {
   display: flex;
-  gap: 10px;
-  width: 400px;
-  justify-content: stretch;
+  gap: 12px;
 }
+
 .login-button {
   flex: 1;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font: inherit;
+  cursor: pointer;
+  color: #fff;
+  background: #1d3557;
+}
+
+.login-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.login-button-secondary {
+  color: #1d3557;
+  background: #dce8ff;
 }

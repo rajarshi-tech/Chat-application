@@ -7,7 +7,7 @@ export function Message({ text, sender }) {
   return (
     <div className={sender === username ? "message current-user-message" : "message"}>
       <div className="message-box">
-        <div className={sender === username ? "sender current-user" : "sender"}>{sender}</div>
+        <div className="sender">{sender}</div>
         <div className="gap" />
         <div className="text">{text}</div>
         <div className="gap" />
