@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import inspect, text
 from sqlalchemy.orm import Session
 
 from . import models, schemas, crud, auth
@@ -7,6 +8,20 @@ from .database import engine, get_db
 
 # Create tables
 models.Base.metadata.create_all(bind=engine)
+
+
+def ensure_message_schema():
+    columns = {
+        column["name"]
+        for column in inspect(engine).get_columns(models.Message.__tablename__)
+    }
+
+    if "owner_id" not in columns:
+        with engine.begin() as connection:
+            connection.execute(text("ALTER TABLE messages ADD COLUMN owner_id INTEGER"))
+
+
+ensure_message_schema()
 
 app = FastAPI()
 app.add_middleware(
