@@ -17,8 +17,8 @@ def get_user_by_username(db: Session, username: str):
 def get_messages(db: Session):
     return db.query(models.Message).all()
 
-def create_message(db: Session, message: schemas.MessageCreate, owner_id: int):
-    db_message = models.Message(**message.model_dump(), owner_id=owner_id)
+def create_message(db: Session, message: schemas.MessageCreate, owner_id: int, username: str):
+    db_message = models.Message(text=message.text, username=username, owner_id=owner_id)
     db.add(db_message)
     db.commit()
     db.refresh(db_message)

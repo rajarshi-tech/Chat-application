@@ -16,11 +16,11 @@ class Token(BaseModel):
     token_type: str
 
 class MessageCreate(BaseModel):
-    username: str
     text: str
 
 class MessageResponse(MessageCreate):
     id: int
+    username: str
 
     class Config:
         from_attributes = True

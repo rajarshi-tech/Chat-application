@@ -1,13 +1,56 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { loginRequest, signupRequest } from "../services/AuthService.js";
 
 const AuthContext = createContext();
 
+const decodeTokenPayload = (token) => {
+  const payload = token.split(".")[1];
+  const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+  const padding = "=".repeat((4 - (base64.length % 4)) % 4);
+  return JSON.parse(atob(base64 + padding));
+};
+
+const getStoredUser = () => {
+  const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
+
+  if (!token || !username) {
+    return null;
+  }
+
+  try {
+    const payload = decodeTokenPayload(token);
+
+    if (payload.exp && payload.exp * 1000 <= Date.now()) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      return null;
+    }
+  } catch {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    return null;
+  }
+
+  return { username };
+};
+
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() => {
-    const username = localStorage.getItem("username");
-    return username ? { username } : null;
-  });
+  const [user, setUser] = useState(getStoredUser);
+
+  useEffect(() => {
+    const syncStoredUser = () => {
+      setUser(getStoredUser());
+    };
+
+    window.addEventListener("auth:session-expired", syncStoredUser);
+    window.addEventListener("storage", syncStoredUser);
+
+    return () => {
+      window.removeEventListener("auth:session-expired", syncStoredUser);
+      window.removeEventListener("storage", syncStoredUser);
+    };
+  }, []);
 
   const persistSession = (username, token) => {
     localStorage.setItem("token", token);
@@ -33,7 +76,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const isAuthenticated = !!localStorage.getItem("token");
+  const isAuthenticated = !!user && !!localStorage.getItem("token");
 
   return (
     <AuthContext.Provider value={{ user, login, signup, logout, isAuthenticated }}>

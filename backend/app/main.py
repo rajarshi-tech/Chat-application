@@ -63,7 +63,7 @@ def read_items(db: Session = Depends(get_db)):
 
 @app.post("/messages", response_model=schemas.MessageResponse)
 def add_item(item: schemas.MessageCreate, db: Session = Depends(get_db), current_user = Depends(auth.get_current_user)):
-    return crud.create_message(db, item, current_user.id)
+    return crud.create_message(db, item, current_user.id, current_user.username)
 
 @app.delete("/messages")
 def delete_messages(db: Session = Depends(get_db)):

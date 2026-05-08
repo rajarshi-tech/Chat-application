@@ -38,8 +38,9 @@ export function MessagesProvider({ children }) {
 
 
   const updateMessages = async (newMessage) => {
-    await API.post("/messages", newMessage);
+    const response = await API.post("/messages", newMessage);
     await loadMessages();
+    return response.data;
   };
 
   const deleteMessages = async () => {

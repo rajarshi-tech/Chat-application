@@ -1,11 +1,20 @@
-.input-field {
+.input-shell {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  background-color: antiquewhite;
+}
+
+.input-field {
   display: flex;
   padding: 10px 20px;
-  background-color: antiquewhite;
   height: 50px;
   justify-content: space-between;
+}
+
+.input-error {
+  color: #a40000;
+  font-size: 14px;
+  padding: 8px 20px 0;
 }
