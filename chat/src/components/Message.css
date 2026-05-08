@@ -17,12 +17,13 @@
 .message-box {
   display: flex;
   flex-direction: column;
-  min-width: 200px;
   padding: 10px;
   border-radius: 10px;
   background-color: #dcd1d1;
   margin-bottom: 20px;
 }
 .text {
-  line-clamp: 2;
+  max-width: 70vw;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
