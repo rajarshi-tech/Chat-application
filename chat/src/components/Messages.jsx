@@ -1,20 +1,29 @@
 import { Message } from './Message';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { MessagesContext } from '../context/MessagesContext';
 import './Messages.css';
 
 export function Messages() {
   const { messages } = useContext(MessagesContext);
-  console.log("Messages component rendered with messages:", messages);
-  if (messages.length > 0) {
-    return (
-      <div className="messages">
-        {messages.map((msg) => (
-          <Message key={msg.id} text={msg.text} sender={msg.username} />
-        ))}
-      </div>
-    );
-  }
+  const bottomRef = useRef(null);
 
-  return <div className="messages">No messages yet.</div>;
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ block: 'end' });
+  }, [messages.length]);
+
+  return (
+    <main className="messages" aria-live="polite">
+      {messages.length > 0 ? (
+        messages.map((msg) => (
+          <Message key={msg.id} text={msg.text} sender={msg.username} />
+        ))
+      ) : (
+        <div className="empty-state">
+          <div className="empty-title">No messages yet</div>
+          <div className="empty-copy">Start the conversation below.</div>
+        </div>
+      )}
+      <div ref={bottomRef} />
+    </main>
+  );
 }

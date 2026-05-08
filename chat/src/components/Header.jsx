@@ -12,7 +12,10 @@ export function Header() {
   const { logout } = useAuth();
   return (
     <div className="header">
-      <div className="left">Chatting as {username}</div>
+      <div className="left">
+        <span className="chat-title">Chat</span>
+        <span className="chat-user">Signed in as {username}</span>
+      </div>
       <div className="right">
         <button
           className="header-buttons"
@@ -23,7 +26,7 @@ export function Header() {
         >
           Logout
         </button>
-        <button className="header-buttons" onClick={deleteMessages}>
+        <button className="header-buttons danger-button" onClick={deleteMessages}>
           Delete
         </button>
       </div>

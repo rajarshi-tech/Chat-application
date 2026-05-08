@@ -1,24 +1,97 @@
+:root {
+  --app-bg: #f6f3ee;
+  --surface: #fffdf8;
+  --surface-strong: #ffffff;
+  --ink: #24343d;
+  --muted: #68757d;
+  --line: #ded8cc;
+  --primary: #176b5b;
+  --primary-strong: #0f5246;
+  --danger: #b42318;
+  --danger-soft: #fff1ef;
+  --accent: #f4d35e;
+  --header-height: 74px;
+  --composer-height: 88px;
+  --keyboard-offset: 0px;
+  --page-gutter: clamp(14px, 4vw, 32px);
+  color: var(--ink);
+  background: var(--app-bg);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--app-bg);
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.96) 0%, rgba(232, 241, 237, 0.9) 100%),
+    var(--app-bg);
+  color: var(--ink);
+  overflow-x: hidden;
 }
+
+#root {
+  min-height: 100dvh;
+}
+
 button {
-  padding: 10px 20px;
-  font-size: 16px;
+  appearance: none;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 700;
   cursor: pointer;
-  color: white;
-  background-color: black;
+  color: #fff;
+  background-color: var(--primary);
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--primary-strong);
+  box-shadow: 0 10px 24px rgba(23, 107, 91, 0.2);
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+  box-shadow: none;
 }
 
 input {
-  padding: 15px;
+  width: 100%;
+  min-width: 0;
+  padding: 13px 14px;
+  font: inherit;
   font-size: 16px;
-  width: 370px;
-  border-radius: 5px;
-  border-width: 1px;
-  border-color: black;
-  border-style: solid;
+  color: var(--ink);
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+input:focus {
+  outline: 3px solid rgba(244, 211, 94, 0.42);
+  border-color: var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

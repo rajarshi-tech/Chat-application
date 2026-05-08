@@ -3,18 +3,56 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: antiquewhite;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + var(--keyboard-offset));
+  z-index: 30;
+  padding: 10px var(--page-gutter) calc(10px + env(safe-area-inset-bottom, 0px));
+  background: rgba(255, 253, 248, 0.94);
+  border-top: 1px solid rgba(222, 216, 204, 0.86);
+  box-shadow: 0 -16px 34px rgba(36, 52, 61, 0.08);
+  backdrop-filter: blur(18px);
+  transition: bottom 160ms ease;
 }
 
 .input-field {
-  display: flex;
-  padding: 10px 20px;
-  height: 50px;
-  justify-content: space-between;
+  width: min(100%, 880px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-field input {
+  min-height: 48px;
+}
+
+.input-field button {
+  min-width: 96px;
+  min-height: 48px;
 }
 
 .input-error {
-  color: #a40000;
+  width: min(100%, 880px);
+  margin: 0 auto 8px;
+  padding: 9px 12px;
+  color: var(--danger);
   font-size: 14px;
-  padding: 8px 20px 0;
+  background: var(--danger-soft);
+  border: 1px solid rgba(180, 35, 24, 0.2);
+  border-radius: 8px;
+}
+
+@media (max-width: 520px) {
+  .input-shell {
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .input-field {
+    gap: 8px;
+  }
+
+  .input-field button {
+    min-width: 74px;
+    padding-inline: 13px;
+  }
 }

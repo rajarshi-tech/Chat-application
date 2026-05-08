@@ -1,0 +1,15 @@
+.chat-page {
+  min-height: 100dvh;
+  padding:
+    calc(var(--header-height) + 24px)
+    var(--page-gutter)
+    calc(var(--composer-height) + var(--keyboard-offset) + 32px);
+}
+
+@media (max-width: 640px) {
+  .chat-page {
+    min-height: 100svh;
+    padding-top: calc(var(--header-height) + 14px);
+    padding-bottom: calc(var(--composer-height) + var(--keyboard-offset) + 22px);
+  }
+}

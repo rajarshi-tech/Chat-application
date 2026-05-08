@@ -4,8 +4,8 @@
   place-items: center;
   padding: 24px;
   background:
-    radial-gradient(circle at top, rgba(95, 165, 255, 0.18), transparent 35%),
-    linear-gradient(160deg, #f7f9fc 0%, #edf3ff 100%);
+    linear-gradient(180deg, rgba(255, 253, 248, 0.96) 0%, rgba(232, 241, 237, 0.92) 100%),
+    var(--app-bg);
 }
 
 .login {
@@ -14,9 +14,10 @@
   flex-direction: column;
   gap: 14px;
   padding: 32px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 24px 60px rgba(39, 76, 119, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.94);
+  border: 1px solid rgba(222, 216, 204, 0.86);
+  box-shadow: 0 24px 60px rgba(36, 52, 61, 0.14);
 }
 
 .login-copy h1 {
@@ -26,26 +27,26 @@
 
 .login-copy p {
   margin: 0;
-  color: #54606f;
+  color: var(--muted);
 }
 
 .login-input {
   width: 100%;
   padding: 12px 14px;
-  border: 1px solid #d4dcec;
-  border-radius: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
   font: inherit;
   background: #fff;
 }
 
 .login-input:focus {
-  outline: 2px solid rgba(69, 123, 157, 0.3);
-  border-color: #457b9d;
+  outline: 3px solid rgba(244, 211, 94, 0.42);
+  border-color: var(--primary);
 }
 
 .login-error {
   margin: 0;
-  color: #b42318;
+  color: var(--danger);
 }
 
 .buttons {
@@ -56,12 +57,13 @@
 .login-button {
   flex: 1;
   border: 0;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 12px 16px;
   font: inherit;
+  font-weight: 800;
   cursor: pointer;
   color: #fff;
-  background: #1d3557;
+  background: var(--primary);
 }
 
 .login-button:disabled {
@@ -70,6 +72,22 @@
 }
 
 .login-button-secondary {
-  color: #1d3557;
-  background: #dce8ff;
+  color: var(--primary);
+  background: rgba(23, 107, 91, 0.12);
+}
+
+@media (max-width: 480px) {
+  .login-shell {
+    align-items: stretch;
+    padding: 18px;
+  }
+
+  .login {
+    margin-block: auto;
+    padding: 24px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
 }

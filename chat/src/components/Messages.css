@@ -1,4 +1,43 @@
 .messages {
-  margin-top: 100px;
-  margin-bottom: 70px;
+  width: min(100%, 880px);
+  min-height: calc(100dvh - var(--header-height) - var(--composer-height) - 64px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-margin-bottom: calc(var(--composer-height) + var(--keyboard-offset));
+}
+
+.empty-state {
+  width: min(100%, 440px);
+  margin: auto;
+  padding: 28px;
+  text-align: center;
+  color: var(--muted);
+  background: rgba(255, 253, 248, 0.72);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+}
+
+.empty-title {
+  color: var(--ink);
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.empty-copy {
+  line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+  .messages {
+    gap: 10px;
+    min-height: calc(100svh - var(--header-height) - var(--composer-height) - 36px);
+  }
+
+  .empty-state {
+    margin-top: 14vh;
+    padding: 22px;
+  }
 }
