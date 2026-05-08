@@ -13,7 +13,7 @@ export function Header() {
   return (
     <div className="header">
       <div className="left">
-        <span className="chat-title">Chat</span>
+        <span className="chat-title">Chatter</span>
         <span className="chat-user">Signed in as {username}</span>
       </div>
       <div className="right">
