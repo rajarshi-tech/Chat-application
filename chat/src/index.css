@@ -32,11 +32,11 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  /*background:
+  background:
     linear-gradient(180deg, rgba(255, 253, 248, 0.96) 0%, rgba(232, 241, 237, 0.9) 100%),
     var(--app-bg);
-  color: var(--ink);*/
-  background-image: url(assets/bg.png);
+  color: var(--ink);
+  /*background-image: url(assets/bg.png);*/
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
