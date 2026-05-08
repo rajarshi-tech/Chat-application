@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import inspect, text
@@ -24,9 +26,32 @@ def ensure_message_schema():
 ensure_message_schema()
 
 app = FastAPI()
+
+DEPLOYED_FRONTEND_URL = "https://chat-application-c5en.vercel.app"
+LOCAL_FRONTEND_URLS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:4173",
+    "http://127.0.0.1:4173",
+]
+
+
+def get_allowed_origins():
+    configured_origins = os.getenv("CORS_ORIGINS") or os.getenv("FRONTEND_URL")
+
+    if configured_origins:
+        return [
+            origin.strip().rstrip("/")
+            for origin in configured_origins.split(",")
+            if origin.strip()
+        ]
+
+    return [DEPLOYED_FRONTEND_URL, *LOCAL_FRONTEND_URLS]
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=get_allowed_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

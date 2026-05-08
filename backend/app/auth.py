@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 from . import crud, models
 from .database import get_db
 
-SECRET_KEY = "123456789"
+SECRET_KEY = os.getenv("SECRET_KEY", "123456789")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 PASSWORD_HASH_NAME = "pbkdf2_sha256"
